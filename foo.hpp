@@ -9,14 +9,15 @@
 std::vector< char > foo(std::list< Human >& people)
 {
     std::vector< char > retval(people.size());
-    // Krok 1: Inkrementacja pola age poprzez metodę birthday
-    std::for_each(people.begin(), people.end(), [](Human& person) {
-    person.birthday();
+    // Inkrementacja pola age dla każdego elementu listy
+    std::for_each(people.begin(), people.end(), [](Human& human) {
+        human.birthday();
     });
-    // Krok 2: Utworzenie wektora z wynikami isMonster
-    std::vector<char> results;
-    std::transform(humans.rbegin(), humans.rend(), std::back_inserter(results), [](const Human& human) {
+
+    // Tworzenie wektora z wynikami w odwrotnej kolejności
+    std::transform(people.rbegin(), people.rend(), retval.begin(), [](const Human& human) {
         return human.isMonster() ? 'n' : 'y';
     });
+
     return retval;
 }
